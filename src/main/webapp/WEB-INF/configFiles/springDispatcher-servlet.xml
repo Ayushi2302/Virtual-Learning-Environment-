@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:mvc="http://www.springframework.org/schema/mvc"
+     xmlns:tx="http://www.springframework.org/schema/tx"
+      xmlns:p="http://www.springframework.org/schema/p"
+    xmlns:context="http://www.springframework.org/schema/context"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="
+        http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/mvc
+        http://www.springframework.org/schema/mvc/spring-mvc.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd
+        http://www.springframework.org/schema/tx
+    	http://www.springframework.org/schema/tx/spring-tx-4.0.xsd
+        ">
+
+    <mvc:annotation-driven enable-matrix-variables="true"/>
+    <tx:annotation-driven/>
+    
+   <mvc:resources location="/WEB-INF/resources/" mapping="/resources/**"></mvc:resources>
+<context:component-scan base-package="com.virtusa.springmvc"></context:component-scan> 
+<bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+<property name="prefix" value="/WEB-INF/views/"/>
+<property name="suffix" value=".jsp"/>
+</bean>
+<mvc:annotation-driven enable-matrix-variables="true"/>
+  
+ <tx:annotation-driven/> 
+   <bean class="org.springframework.jdbc.datasource.DriverManagerDataSource" name="ds"
+    p:driverClassName="oracle.jdbc.driver.OracleDriver"
+    p:url="jdbc:oracle:thin:@localhost:1521:xe"
+    p:username="system"
+    p:password="ayushi"
+    />
+    <bean class="org.springframework.orm.hibernate5.LocalSessionFactoryBean" name="factory">
+    <property name="dataSource" ref="ds"></property>
+    <property name="hibernateProperties">
+    <props>
+    <prop key="hibernate.dialect">org.hibernate.dialect.Oracle10gDialect</prop>
+				<prop key="hibernate.hbm2ddl.auto">update</prop>
+				<prop key="hibernate.show_sql">true</prop>
+			
+    </props>
+    </property>
+   <!--  <property name="annotatedClasses">
+    <list>
+    <value>com.virtusa.springmvc.model.Student</value>
+    <value>com.virtusa.springmvc.model.Course</value>
+     <value>com.virtusa.springmvc.model.Faculty</value>
+     <value>com.virtusa.springmvc.model.Question</value>
+       <value>com.virtusa.springmvc.model.User</value>
+       <value>com.virtusa.springmvc.model.Attendance</value>
+       <value>com.virtusa.springmvc.model.Marks</value>
+
+       <value>com.virtusa.springmvc.model.Contact</value>
+
+    </list>
+    </property> -->
+    <property name="packagesToScan" value="com.virtusa.springmvc.model"/>
+    </bean>
+
+ <bean class="org.springframework.orm.hibernate5.HibernateTemplate" name="hibernateTemplate">
+    <property name="sessionFactory" ref="factory"></property>
+    </bean>
+    
+   <bean class="org.springframework.orm.hibernate5.HibernateTransactionManager" name="transactionManager">
+    <property name="sessionFactory" ref="factory"></property>
+    </bean>
+</beans>

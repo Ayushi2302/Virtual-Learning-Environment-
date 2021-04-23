@@ -1,0 +1,63 @@
+body
+{
+	background-color: green;
+}
+
+div.scrollmenu {
+  background-color:blue;
+  overflow: auto;
+  white-space: nowrap;
+  text-align: center;
+}
+div.scrollmenu a {
+  display: inline-block;
+  color: blue;
+  text-align: center;
+  padding: 14px;
+  text-decoration: none;
+}
+input[type=submit]:focus {
+  background-color: green;
+}
+input[type=text] {
+  width: 20%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  box-sizing: border-box;
+}
+input[type=password] {
+  width: 20%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  box-sizing: border-box;
+}
+input[type=submit] {
+  width: 10%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  box-sizing: border-box;
+  background-color:green;
+}
+input[type=reset] {
+  width: 10%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  box-sizing: border-box;
+  background-color:blue;
+}
+.hovering-image{
+    position: fixed;
+    left: 5%;
+    top:35%;
+    height: 25%;
+    width: 15%;
+}
+div.scrollmenu a:hover {
+  background-color:white;
+}
+table.center {
+  border-spacing: 4px;
+  border-color: gray;
+  margin-left: auto;
+  margin-right: auto;
+}
